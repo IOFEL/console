@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace validador_de_password
 {
@@ -22,9 +23,20 @@ namespace validador_de_password
 
     class Validador
     {
-        public Boolean Validar(string password)
+        public Boolean Longitud(string password)
         {
             return password.Length >= 8 && password.Length <= 60;
         }
+
+        public Boolean TieneNumeros(string password)
+        {
+            return new Regex(@"[0-9]+").IsMatch(password);
+        }
+
+        public Boolean Validar(string password)
+        {
+            return Longitud(password) && TieneNumeros(password);
+        }
+        
     }
 }
